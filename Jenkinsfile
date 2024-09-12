@@ -47,7 +47,7 @@ pipeline {
             }
             steps {
                 script {
-                    def composeFile = "${env.WORKSPACE}/docker-compose.yml"
+                    def composeFile = "/var/lib/jenkins/workspace/food-delivery-compose/docker-compose.yml"
                     def serviceName = "food-delivery-discovery-service"
 
                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
