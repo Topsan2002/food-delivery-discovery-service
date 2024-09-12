@@ -58,6 +58,7 @@ pipeline {
                     sh "docker-compose pull -f ${composeFile} "
                     sh "docker-compose up -d -f ${composeFile} "
 //                     sh "docker image prune"
+                    sh "docker-compose down && docker-compose build --pull && docker-compose up -d"
 //                     echo "Docker container for service '${serviceName}' is now running."
                 }
             }
