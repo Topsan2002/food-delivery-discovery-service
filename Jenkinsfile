@@ -52,14 +52,18 @@ pipeline {
                     def serviceName = "food-delivery-discovery-service"
 
 
-                    echo "Pulling the latest image for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
-                    sh "docker-compose -f ${composeFile} pull ${serviceName}"
+                    echo "Stopping and removing any existing containers"
+                    sh "docker rm -f ${serviceName} || true"
 
-                    echo "Recreating the Docker container for service '${serviceName}'"
-                    sh "docker-compose -f ${composeFile} up -d --force-recreate --no-deps ${serviceName}"
+                                echo "Cleaning up unused Docker resources"
+                                sh "docker system prune -af"
+                                sh "docker volume prune -f"
 
-                    echo "Cleaning up unused Docker images"
-                    sh "docker image prune -f"
+                                echo "Pulling the latest image for service '${serviceName}'"
+                                sh "docker-compose -f ${composeFile} pull ${serviceName}"
+
+                                echo "Recreating the Docker container for service '${serviceName}'"
+                                sh "docker-compose -f ${composeFile} up -d --force-recreate --no-deps ${serviceName}"
                 }
             }
         }
