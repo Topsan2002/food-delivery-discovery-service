@@ -54,9 +54,9 @@ pipeline {
                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
 
 
-//                     sh "docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
+                    sh "docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
 
-                    sh "docker-compose pull -f ${composeFile} "
+//                     sh "docker-compose pull -f ${composeFile} "
 
                     sh "docker-compose up -d -f ${composeFile} --no-deps --force-recreate ${serviceName}"
 
