@@ -4,7 +4,8 @@ pipeline {
           AWS_REGION = 'ap-southeast-1'  // Replace with your region
           AWS_ACCOUNT_ID = credentials('AWS_ACCOUNT_ID')
           ECR_REPO_NAME = 'food-delivery-discovery-service'  // Replace with your ECR repository name
-          IMAGE_TAG = "${env.BUILD_ID}"  // Or use 'latest' or any other tag
+//           IMAGE_TAG = "${env.BUILD_ID}"  // Or use 'latest' or any other tag
+          IMAGE_TAG = "latest"
           WORKSPACE = "/var/lib/jenkins/workspace/food-delivery-discovery-server"
     }
     stages {
@@ -52,12 +53,8 @@ pipeline {
 
                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
 
-
                     sh "docker-compose up -d -f ${composeFile} --no-deps --force-recreate ${serviceName}"
                     sh "docker image prune"
-                    // Run the docker-compose up command to start the container
-//                     sh "docker-compose -f ${composeFile} up -d ${serviceName}"
-
 
                     echo "Docker container for service '${serviceName}' is now running."
                 }
