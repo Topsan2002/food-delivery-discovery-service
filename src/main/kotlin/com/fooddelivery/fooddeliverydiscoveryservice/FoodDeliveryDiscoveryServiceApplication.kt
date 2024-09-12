@@ -15,6 +15,6 @@ fun main(args: Array<String>) {
     println("IT OK TO start the application")
     println("IT OK TO start the application")
     println("IT OK TO start the application3333333")
-    println("IT OK TO start the 332332")
+    println("IT OK TO start the 9999999")
     runApplication<FoodDeliveryDiscoveryServiceApplication>(*args)
 }
