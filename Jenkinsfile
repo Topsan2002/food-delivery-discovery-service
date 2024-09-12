@@ -53,7 +53,7 @@ pipeline {
                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
 
 
-                    sh "docker-compose up -d --no-deps --force-recreate ${serviceName}"
+                    sh "docker-compose up -d -f ${composeFile} --no-deps --force-recreate ${serviceName}"
                     sh "docker image prune"
                     // Run the docker-compose up command to start the container
 //                     sh "docker-compose -f ${composeFile} up -d ${serviceName}"
