@@ -10,5 +10,10 @@ class FoodDeliveryDiscoveryServiceApplication
 
 fun main(args: Array<String>) {
     println("IT OK TO start the application")
+    println("IT OK TO start the application")
+    println("IT OK TO start the application")
+    println("IT OK TO start the application")
+    println("IT OK TO start the application")
+    println("IT OK TO start the application")
     runApplication<FoodDeliveryDiscoveryServiceApplication>(*args)
 }
