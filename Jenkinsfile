@@ -51,18 +51,12 @@ pipeline {
                     def composeFile = "/var/jenkins_home/workspace/food-delivery/food-delivery-docker-compose/docker-compose.yml"
                     def serviceName = "food-delivery-discovery-service"
 
-                    echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
-
-
+//                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
                     sh "docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
-
 //                     sh "docker-compose pull -f ${composeFile} "
-
                     sh "docker-compose up -d -f ${composeFile} --no-deps --force-recreate ${serviceName}"
-
                     sh "docker image prune"
-
-                    echo "Docker container for service '${serviceName}' is now running."
+//                     echo "Docker container for service '${serviceName}' is now running."
                 }
             }
         }
