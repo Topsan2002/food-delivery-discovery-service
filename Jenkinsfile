@@ -52,14 +52,14 @@ pipeline {
                     def serviceName = "food-delivery-discovery-service"
 
 
+                    echo "Pulling the latest image for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
+                    sh "docker-compose -f ${composeFile} pull ${serviceName}"
 
-//                     echo "Running Docker container for service '${serviceName}' using Docker Compose file located at: ${composeFile}"
-//                     sh "docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
-                    sh "docker-compose pull -f ${composeFile} "
-                    sh "docker-compose up -d -f ${composeFile} "
-//                     sh "docker image prune"
-//                     sh "docker-compose down  -f ${composeFile} && docker-compose build --pull  -f ${composeFile} && docker-compose up -d  -f ${composeFile}"
-//                     echo "Docker container for service '${serviceName}' is now running."
+                    echo "Recreating the Docker container for service '${serviceName}'"
+                    sh "docker-compose -f ${composeFile} up -d --force-recreate --no-deps ${serviceName}"
+
+                    echo "Cleaning up unused Docker images"
+                    sh "docker image prune -f"
                 }
             }
         }
