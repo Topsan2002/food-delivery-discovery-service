@@ -1,4 +1,4 @@
-package com.fooddelivery.fooddeliverydiscoveryservice
+package com.fooddelivery.discoveryservice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
